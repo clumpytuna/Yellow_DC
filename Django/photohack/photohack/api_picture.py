@@ -53,7 +53,7 @@ def download(request):
         if not process_picture(picture):
             return Response(None, HTTP_504_GATEWAY_TIMEOUT)
 
-    return HttpResponseRedirect(MEDIA_URL + picture.source.url)
+    return HttpResponseRedirect(picture.source.url)
 
 
 def process_picture(picture: Picture) -> bool:
