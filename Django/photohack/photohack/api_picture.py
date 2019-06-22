@@ -48,6 +48,18 @@ def download(request):
         return Response(None, HTTP_404_NOT_FOUND)
 
     if picture.processed is None:
-        return Response(None, HTTP_504_GATEWAY_TIMEOUT)
+        if not process_picture(picture):
+            return Response(None, HTTP_504_GATEWAY_TIMEOUT)
 
     return HttpResponseRedirect(picture.processed.url)
+
+
+def process_picture(picture: Picture) -> bool:
+    """
+    Try to urge picture processing
+    """
+    # This is temporary
+    picture.processed = picture.source
+    picture.save()
+    picture.refresh_from_db()
+    return True
