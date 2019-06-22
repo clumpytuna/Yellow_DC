@@ -25,7 +25,7 @@ SECRET_KEY = '4ily*+0(^%*8c7l2j_y^^1gs=dx5xfvt#9!0#)81aq0-*(g_cy'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = '*'
 
 
 # Application definition
@@ -118,3 +118,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = '/webmedia/'
