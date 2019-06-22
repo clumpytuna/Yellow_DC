@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-from .api import upload
+from .api_picture import upload
 
 urlpatterns = [
     url(r'^upload$', upload)
