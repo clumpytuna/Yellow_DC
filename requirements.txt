@@ -1,4 +1,7 @@
+pytorch>=1.1.0
+torchvision>=0.3.0
 matplotlib
+yacs
 numpy
 skimage
 django-rest-framework

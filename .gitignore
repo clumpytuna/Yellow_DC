@@ -191,3 +191,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# ML Model weights
+Keypoints_API/model_weights/*
