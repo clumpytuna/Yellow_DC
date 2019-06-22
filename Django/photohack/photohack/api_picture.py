@@ -1,3 +1,5 @@
+from .settings import MEDIA_URL
+
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponseRedirect
 from rest_framework.decorators import api_view
@@ -51,7 +53,7 @@ def download(request):
         if not process_picture(picture):
             return Response(None, HTTP_504_GATEWAY_TIMEOUT)
 
-    return HttpResponseRedirect(picture.source.url)
+    return HttpResponseRedirect(MEDIA_URL + picture.source.url)
 
 
 def process_picture(picture: Picture) -> bool:
