@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ImageHack Yellow DC</title>
+    </head>
+    <body>
+        <h1>Upload the image</h1>
+        <div>
+            <form enctype="multipart/form-data" method="post" action="/upload">
+                {% csrf_token %}
+                <label for="image">Image:</label>
+                <input id="image" type="file" name="image">
+                <input type="submit" value="Transform!">
+            </form>
+        </div>
+    </body>
+</html>

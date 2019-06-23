@@ -2,9 +2,13 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from django.conf.urls import url
-from .api_picture import upload, download
+
+from .views import user_upload, user_result
+from .views import IndexView
 
 urlpatterns = [
-    url(r'^upload$', upload),
-    url(r'^download$', download),
+    url(r'^$', IndexView.as_view()),
+
+    url(r'^upload$', user_upload),
+    url(r'^result$', user_result),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
