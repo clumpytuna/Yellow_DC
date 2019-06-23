@@ -61,12 +61,14 @@ def receive_from_ml(id: int) -> str or None:
     _prepare()
 
     while True:
-        ok, prop, body = channel_receive.basic_get(queue=QUEUE_RESULT, no_ack=True)
+        print("receive_from_ml check")
+        ok, prop, body = channel_receive.basic_get(queue=QUEUE_RESULT, auto_ack=True)
         if ok is None:
             break
 
         r = loads(body)
         db[int(r['id'])] = r['path']
+        print("receive_from_ml {} at {}".format(r['id'], r['path']))
 
     if id in db:
         return db[id]

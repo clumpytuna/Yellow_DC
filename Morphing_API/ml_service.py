@@ -40,7 +40,7 @@ def _callback(channel, method, properties, body):
     r = loads(body)
     print("RECIEVED image #{} with path {}".format(r['id'], r['path']))
 
-    resulting_path = "/tmp/{}_{}.{}".format(str(datetime.now()), r['id'], r['path'].split('.')[-1])
+    resulting_path = "/tmp/{}_{}.{}".format(str(datetime.now()), r['id'], 'png')
     face_to_fruits(r['path'], resulting_path)
 
     channel_send.basic_publish(

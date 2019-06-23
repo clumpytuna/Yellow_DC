@@ -63,6 +63,8 @@ def result(request):
         if not urge_processing(picture):
             return None
 
+    picture.refresh_from_db()
+
     return picture.processed.url
 
 
@@ -81,6 +83,7 @@ def urge_processing(picture: Picture) -> bool:
         content = f.read()
 
     picture.processed.save(new_path.split('/')[-1], ContentFile(content))
+    print("urge_processing: Content saved")
 
     picture.save()
     picture.refresh_from_db()
