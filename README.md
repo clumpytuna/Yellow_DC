@@ -8,7 +8,7 @@ We are glad to present our app Fruit Photo. FruitPhoto is an awesome way to tran
 
 <img src="./Django/photohack/photohack/static/img/readme_1.png"/>
 
-Check out example!
+Check out the example!
 
 <img src="./Django/photohack/photohack/static/img/readme_2.png"/>
 
