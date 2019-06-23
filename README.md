@@ -1,5 +1,5 @@
 # PhotoHack
-### Project name: [PhotoFruit.ml](photofruit.ml)
+### Project name: [FruitPhoto.ml](FruitPhoto.ml)
 #### Punchline: Turn yourself into fruits!
 
 ### Description: 
