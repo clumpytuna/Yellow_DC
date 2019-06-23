@@ -4,6 +4,7 @@ from skimage import io
 from skimage import transform
 import os
 import matplotlib.pyplot as plt
+import random
 
 from get_keypoints import *
 
@@ -20,7 +21,12 @@ def load_fruits():
             coord = [int(x) for x in ar[1:3]]
             mapping = int(ar[3])
             if ar[0] != '':
-                fruit = io.imread(os.path.join(dir_path, 'fruits/files/Fruit{}.png'.format(int(ar[0]))))
+                if os.path.exists('fruits/files/Fruit{}_2.png'.format(int(ar[0]))):
+                    add = random.choice(['_2', ''])
+                else:
+                    add = ''
+                
+                fruit = io.imread(os.path.join(dir_path, 'fruits/files/Fruit{}{}.png'.format(int(ar[0]), add)))
                 fruits.append(fruit)
                 mappings.append([])
                 coords.append([])
