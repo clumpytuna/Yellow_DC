@@ -60,11 +60,11 @@ def result(request):
     except ObjectDoesNotExist:
         return Response(None, HTTP_404_NOT_FOUND)
 
-    if picture.processed is None:
-        if not urge_processing(picture):
-            return None
-
+    urge_processing(picture)
     picture.refresh_from_db()
+
+    if picture.processed is None:
+        return None
 
     return picture.processed.url
 
