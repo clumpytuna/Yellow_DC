@@ -72,15 +72,19 @@ def urge_processing(picture: Picture) -> bool:
     """
     Try to urge picture processing
     """
+    print("urg_processing")
     # TODO
     new_path = receive_from_ml(picture.id)
     # new_path = picture.source.path
 
     if new_path is None:
+        print("urg_processing: False")
         return False
 
     with open(new_path, 'rb') as f:
         content = f.read()
+
+    print("urg_processing: Saving")
 
     picture.processed.save(new_path.split('/')[-1], ContentFile(content))
     print("urge_processing: Content saved")
