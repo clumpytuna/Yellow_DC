@@ -33,7 +33,10 @@ def upload(request):
     )
     new_picture.save()
 
-    process_picture(new_picture)
+    # TODO
+    # send_to_ml(new_picture.id, new_picture.source.path)
+
+    urge_processing(new_picture)
 
     return int(new_picture.id)
 
@@ -57,18 +60,17 @@ def result(request):
         return Response(None, HTTP_404_NOT_FOUND)
 
     if picture.processed is None:
-        if not process_picture(picture):
+        if not urge_processing(picture):
             return None
 
     return picture.processed.url
 
 
-def process_picture(picture: Picture) -> bool:
+def urge_processing(picture: Picture) -> bool:
     """
     Try to urge picture processing
     """
-    # Temporary
-    # send_to_ml(picture.id, picture.source.path)
+    # TODO
     # new_path = receive_from_ml(picture.id)
     new_path = picture.source.path
 
