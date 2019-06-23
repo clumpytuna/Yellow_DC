@@ -70,7 +70,6 @@ def receive_from_ml(id: int) -> str or None:
         db[int(r['id'])] = r['path']
         print("receive_from_ml {} at {}".format(r['id'], r['path']))
 
-    if id in db:
-        return db[id]
-
-    return None
+    print(db)
+    print("ID is {}".format(id))
+    return db.get(int(id))
