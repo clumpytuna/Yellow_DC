@@ -21,9 +21,6 @@ def _prepare():
     global channel_send
     global channel_receive
 
-    if connection is not None:
-        return
-
     connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
 
     channel_send = connection.channel()
