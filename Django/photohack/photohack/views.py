@@ -34,8 +34,8 @@ def user_result(request):
     r = result(request)
     if r is None:
         return HttpResponse(render_to_string('processing.html', {'id': request.GET['id']}))
-    if type(r) == str:
-        return HttpResponse(render_to_string('result.html', {'url': r}))
+    if type(r) == dict:
+        return HttpResponse(render_to_string('result.html', r))
     else:
         if r.status_code == HTTP_404_NOT_FOUND:
             return HttpResponseNotFound()

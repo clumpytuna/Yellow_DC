@@ -65,7 +65,7 @@ def result(request):
 
     picture.refresh_from_db()
 
-    return picture.processed.url
+    return {'url': picture.processed.url, 'orig': picture.source.url}
 
 
 def urge_processing(picture: Picture) -> bool:
