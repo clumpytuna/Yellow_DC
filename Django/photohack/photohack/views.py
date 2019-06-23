@@ -6,6 +6,8 @@ from rest_framework.decorators import api_view
 
 from .api_picture import upload, result
 
+from rest_framework.status import HTTP_200_OK
+
 
 class IndexView(TemplateView):
     template_name = 'index.html'
@@ -30,7 +32,7 @@ def user_result(request):
     Renders a failure page in case an image has not been processed yet
     """
     r = result(request)
-    if r is None:
+    if r.status_code != HTTP_200_OK:
         return HttpResponse(render_to_string('result_failure.html'))
     if type(r) == str:
         return HttpResponse(render_to_string('result.html', {'url': r}))
