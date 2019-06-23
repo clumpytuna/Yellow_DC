@@ -35,6 +35,7 @@ def upload(request):
 
     # TODO
     send_to_ml(new_picture.id, new_picture.source.path)
+    new_picture.processed = None
 
     urge_processing(new_picture)
 
@@ -75,7 +76,6 @@ def urge_processing(picture: Picture) -> bool:
     print("urg_processing")
     # TODO
     new_path = receive_from_ml(picture.id)
-    # new_path = picture.source.path
 
     if new_path is None:
         print("urg_processing: False")
