@@ -1,10 +1,12 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.template.loader import render_to_string
 from django.views.generic import TemplateView
 
 from rest_framework.decorators import api_view
 
 from .api_picture import upload, result
+
+from rest_framework.status import HTTP_404_NOT_FOUND
 
 
 class IndexView(TemplateView):
@@ -18,7 +20,7 @@ def user_upload(request):
     """
     r = upload(request)
     if type(r) == int:
-        return HttpResponse(render_to_string('upload.html', {'id': r}))
+        return HttpResponseRedirect('/result?id={}'.format(r))
     else:
         return r
 
@@ -31,8 +33,10 @@ def user_result(request):
     """
     r = result(request)
     if r is None:
-        return HttpResponse(render_to_string('result_failure.html'))
+        return HttpResponse(render_to_string('processing.html', {'id': request.GET['id']}))
     if type(r) == str:
         return HttpResponse(render_to_string('result.html', {'url': r}))
     else:
+        if r.status_code == HTTP_404_NOT_FOUND:
+            return HttpResponseNotFound()
         return r

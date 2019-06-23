@@ -1,4 +1,5 @@
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.files.base import ContentFile
 
 from rest_framework.response import Response
 from rest_framework.status import \
@@ -6,6 +7,7 @@ from rest_framework.status import \
     HTTP_404_NOT_FOUND
 
 from .models_picture import Picture
+from .api_ml import send_to_ml, receive_from_ml
 
 
 def upload(request):
@@ -31,6 +33,11 @@ def upload(request):
     )
     new_picture.save()
 
+    # TODO
+    # send_to_ml(new_picture.id, new_picture.source.path)
+
+    urge_processing(new_picture)
+
     return int(new_picture.id)
 
 
@@ -53,18 +60,29 @@ def result(request):
         return Response(None, HTTP_404_NOT_FOUND)
 
     if picture.processed is None:
-        if not process_picture(picture):
+        if not urge_processing(picture):
             return None
 
-    return picture.source.url  # This is temporary
+    return picture.processed.url
 
 
-def process_picture(picture: Picture) -> bool:
+def urge_processing(picture: Picture) -> bool:
     """
     Try to urge picture processing
     """
-    # This is temporary
-    picture.processed = picture.source
+    # TODO
+    # new_path = receive_from_ml(picture.id)
+    new_path = picture.source.path
+
+    if new_path is None:
+        return False
+
+    with open(new_path, 'rb') as f:
+        content = f.read()
+
+    picture.processed.save(new_path.split('/')[-1], ContentFile(content))
+
     picture.save()
     picture.refresh_from_db()
+
     return True
