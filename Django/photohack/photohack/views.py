@@ -33,7 +33,7 @@ def user_result(request):
     """
     r = result(request)
     if r is None:
-        return HttpResponse(render_to_string('result_failure.html'))
+        return HttpResponse(render_to_string('result_failure.html', {'id': request.GET['id']}))
     if type(r) == str:
         return HttpResponse(render_to_string('result.html', {'url': r}))
     else:
