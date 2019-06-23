@@ -66,7 +66,7 @@ def face_to_fruits(input_path, output_path):
         w_fruit = transform.warp(fruit, inverse_map=t.inverse, preserve_range=True)
         mask = (w_fruit[:, :, -1] > 0.5)
         result[mask] = w_fruit[:, :, :3][mask]
-    result[result == 0] = 255
+    result[result.sum(axis=-1) == 0] = 255
     
     plt.imshow(result)
     plt.axis('off')
