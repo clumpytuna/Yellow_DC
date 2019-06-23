@@ -13,6 +13,10 @@ class IndexView(TemplateView):
     template_name = 'index.html'
 
 
+class WaitView(TemplateView):
+    template_name = 'wait.html'
+
+
 @api_view(['POST'])
 def user_upload(request):
     """
