@@ -53,6 +53,6 @@ def _callback(channel, method, properties, body):
 
 _prepare()
 
-channel_receive.basic_consume(QUEUE_IMAGES, _callback, no_ack=True)
+channel_receive.basic_consume(QUEUE_IMAGES, _callback, auto_ack=True)
 
 channel_receive.start_consuming()
