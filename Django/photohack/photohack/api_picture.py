@@ -61,7 +61,7 @@ def result(request):
         return Response(None, HTTP_404_NOT_FOUND)
 
     if not urge_processing(picture):
-        return False
+        return None
 
     picture.refresh_from_db()
 
