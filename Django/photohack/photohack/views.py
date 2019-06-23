@@ -1,4 +1,4 @@
-from django.http import HttpResponse, HttpResponseNotFound
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.template.loader import render_to_string
 from django.views.generic import TemplateView
 
@@ -13,10 +13,6 @@ class IndexView(TemplateView):
     template_name = 'index.html'
 
 
-class WaitView(TemplateView):
-    template_name = 'wait.html'
-
-
 @api_view(['POST'])
 def user_upload(request):
     """
@@ -24,7 +20,7 @@ def user_upload(request):
     """
     r = upload(request)
     if type(r) == int:
-        return HttpResponse(render_to_string('upload.html', {'id': r}))
+        return HttpResponseRedirect('/result?id={}'.format(r))
     else:
         return r
 
@@ -37,7 +33,7 @@ def user_result(request):
     """
     r = result(request)
     if r is None:
-        return HttpResponse(render_to_string('result_failure.html', {'id': request.GET['id']}))
+        return HttpResponse(render_to_string('processing.html', {'id': request.GET['id']}))
     if type(r) == str:
         return HttpResponse(render_to_string('result.html', {'url': r}))
     else:

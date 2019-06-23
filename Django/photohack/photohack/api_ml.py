@@ -68,4 +68,7 @@ def receive_from_ml(id: int) -> str or None:
         r = loads(body)
         db[int(r['id'])] = r['path']
 
-    return db[id]
+    if id in db:
+        return db[id]
+
+    return None
