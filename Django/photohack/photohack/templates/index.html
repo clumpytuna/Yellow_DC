@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,17 +14,17 @@
   <link href="/static/vendor/bootstrap/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom fonts for this template -->
-  <link href="/static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="/static/vendor/simple-line-icons/css/simple-line-icons.css">
+  <link href="/static/vendor/fontawesome-free/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/static/vendor/simple-line-icons/simple-line-icons.css">
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
 
   <!-- Plugin CSS -->
-  <link rel="stylesheet" href="/static/device-mockups/device-mockups.min.css">
+  <link rel="stylesheet" href="/static/device-mockups/device-mockups.css">
 
   <!-- Custom styles for this template -->
-  <link href="/static/css/new-age.min.css" rel="stylesheet">
+  <link href="/static/css/new-age.css" rel="stylesheet">
 
   <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon">
 
@@ -45,8 +44,8 @@
       <div class="row h-100">
         <div class="col-lg-7 my-auto">
           <div class="header-content mx-auto">
-            <h1 class="mb-5">FruitPhoto is an awesome way to transform your photo.</h1>
-            <h1 class="mb-5">Turn yourself into fruits!</h1>
+            <h1 class="mb-5"><span style="color: #fdcc52; font-weight: 700;">FruitPhoto</span> is an awesome way to transform your photo.</h1>
+            <h1 class="mb-5">Turn yourself into fruits!</h2>
             <form id="file_upload_form" enctype="multipart/form-data" method="post" action="/upload">
                 {% csrf_token %}
                 <label class="btn btn-outline btn-xl js-scroll-trigger">
