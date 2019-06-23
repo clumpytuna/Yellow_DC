@@ -70,6 +70,6 @@ def face_to_fruits(input_path, output_path):
     
     plt.imshow(result)
     plt.axis('off')
-    plt.savefig(output_path, format='png', dpi=700)
+    plt.savefig(output_path, format='png', dpi=700, bbox_inches='tight', pad_inches=0)
     
     return result
